@@ -7,6 +7,7 @@
 // to "React Create App". This only has babel loader to load JavaScript.
 const autoprefixer = require('autoprefixer');
 const paths = require('../config/paths');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 module.exports = {
   plugins: [
@@ -14,6 +15,36 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.(js|jsx|mjs)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+              eslintPath: require.resolve('eslint'),
+
+            },
+            loader: require.resolve('eslint-loader'),
+          },
+        ],
+        include: paths.appSrc,
+      },
+      {
+        test: /\.css$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              plugins: () => [
+                require('stylelint'),
+              ],
+            },
+            loader: require.resolve('postcss-loader'),
+          },
+        ],
+        include: paths.appSrc,
+      },
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
