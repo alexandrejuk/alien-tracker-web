@@ -46,6 +46,7 @@ class NormalLoginForm extends Component {
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="Senha"
+              autoComplete="off"
             />
           )}
         </FormItem>

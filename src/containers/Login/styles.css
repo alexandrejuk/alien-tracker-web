@@ -1,41 +1,32 @@
 .container {
-  color: #ffffff;
   display: flex;
-  height: 100vh;
-  flex-direction: row;
+  flex-wrap: wrap-reverse;
 }
 
 .welcome {
   background-color: #3c3c3c;
   color: #ffffff;
-  flex: 1;
   min-height: 100vh;
+  width: 50%;
 }
 
 .formContainer {
-  flex: 1;
+  background-image: url("../../assets/images/maps_backgroud.jpg");
+  color: #ffffff;
+  min-height: 100vh;
+  width: 50%;
   align-items: center;
   justify-content: center;
   display: flex;
-  background-image: url("../../assets/images/maps_backgroud.jpg");
 }
 
-.card {
-  width: 300px;
-}
+@media (max-width: 750px) {
 
-@media (max-width: 400px) {
-
-  .container {
-    flex-wrap: wrap;
-  }
-
-  .form {
-    height: 80vh;
-    order: -1;
+  .formContainer {
+    width: 100%;
   }
 
   .welcome {
-    height: 100vh;
+    display: none;
   }
 }
