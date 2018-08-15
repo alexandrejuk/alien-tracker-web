@@ -7,7 +7,7 @@
   font-weight: bold;
 }
 
-.counter::first-letter {
+.counter:first-letter {
   font-weight: normal;
 }
 

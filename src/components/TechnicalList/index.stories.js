@@ -1,9 +1,7 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
 
-import TechnicalCard from '.'
+import TechnicalList from '.'
 
 const technician = {
   nome: 'Jailson Mendes',
@@ -21,20 +19,18 @@ const status = {
   start: '10:30',
 }
 
-const centralize = {
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  'align-items': 'center',
-}
+const technicians = Array(15).fill(
+  {
+    technician,
+    order,
+    status,
+  }
+)
 
-storiesOf('TechnicalCard', module)
-  .addDecorator(story => (<div style={centralize}>{story()}</div>))
+storiesOf('TechnicalList', module)
   .add('Default', () => (
-    <TechnicalCard
-      technician={technician}
-      order={order}
-      status={status}
-      onClick={action('clicked')}
+    <TechnicalList
+      technicians={technicians}
+      onClick={console.log}
     />
   ))

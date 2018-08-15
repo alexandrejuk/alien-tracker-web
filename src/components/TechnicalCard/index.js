@@ -14,21 +14,24 @@ const TechnicalCard = ({
   technician,
   order,
   status,
+  onClick,
 }) => {
-  const { foto_url, nome } = technician
+  const { foto_url, nome } = technician // eslint-disable-line
   const { id, companyName, counter } = order
   const { type, start } = status
+  const handleClick = () => onClick({ technician, order, status })
 
   return (
     <Card
       style={{ width: 300 }}
       bodyStyle={cardBodyStyle}
       hoverable
+      onClick={handleClick} // eslint-disable-line
     >
       <Avatar
         size={64}
         icon="user"
-        src={foto_url}
+        src={foto_url} // eslint-disable-line
       />
       <div className={styles.content}>
         <p>
@@ -53,6 +56,7 @@ TechnicalCard.defaultProps = {
     type: '',
     start: '',
   },
+  onClick: () => null,
 }
 
 TechnicalCard.propTypes = {
@@ -68,6 +72,7 @@ TechnicalCard.propTypes = {
     type: PropTypes.string,
     start: PropTypes.string,
   }),
+  onClick: PropTypes.func,
 }
 
 export default TechnicalCard

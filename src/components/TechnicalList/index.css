@@ -1,0 +1,23 @@
+.container {
+  width: 30%;
+}
+
+.body {
+  overflow: scroll;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.body > div {
+  margin: 20px 0 0;
+}
+
+.body > div:first-child {
+  margin: 0;
+}
+
+.body > div:last-child {
+  margin: 20px 0 0;
+}
