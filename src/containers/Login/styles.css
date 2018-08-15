@@ -1,0 +1,41 @@
+.container {
+  color: #ffffff;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.welcome {
+  background-color: #3c3c3c;
+  color: #ffffff;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.formContainer {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-image: url("../../assets/images/maps_backgroud.jpg");
+}
+
+.card {
+  width: 300px;
+}
+
+@media (max-width: 400px) {
+
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .form {
+    height: 80vh;
+    order: -1;
+  }
+
+  .welcome {
+    height: 100vh;
+  }
+}
