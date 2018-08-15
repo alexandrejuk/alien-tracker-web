@@ -40,16 +40,17 @@ class PrivateRoute extends PureComponent {
 
 PrivateRoute.defaultProps = {
   permissions: [],
+  user: null,
 }
 
 PrivateRoute.propTypes = {
   permissions: PropTypes.arrayOf(PropTypes.string),
   user: PropTypes.shape({
     login: PropTypes.shape({
-      tipo: PropTypes.arrayOf(PropTypes.string).isRequired,
-    }).isRequired,
-  }).isRequired,
-  component: PropTypes.node.isRequired,
+      tipo: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }),
+  component: PropTypes.func.isRequired,
 }
 
 export default PrivateRoute

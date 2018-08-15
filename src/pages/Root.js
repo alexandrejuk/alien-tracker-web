@@ -34,12 +34,16 @@ const mapStateToProps = state => ({
   funcionario: state.login.funcionario,
 })
 
+Root.defaultProps = {
+  funcionario: null,
+}
+
 Root.propTypes = {
   funcionario: PropTypes.shape({
     login: PropTypes.shape({
-      tipo: PropTypes.arrayOf(PropTypes.string).isRequired,
-    }).isRequired,
-  }).isRequired,
+      tipo: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }),
 }
 
 export default connect(mapStateToProps)(Root)

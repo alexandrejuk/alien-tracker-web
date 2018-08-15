@@ -30,6 +30,7 @@ class Login extends Component {
 
   render = () => (
     <LoginContainer
+      loading={this.state.loading}
       onSubmit={this.handleOnClick}
     />
   )
