@@ -16,8 +16,9 @@ const TechnicalList = ({ technicians, onClick }) => (
             technicians.map(
               technician => (
                 <TechnicalCard
+                  key={technician.id}
+                  technician={technician}
                   onClick={onClick}
-                  {...technician}
                 />
               )
             )
@@ -33,7 +34,11 @@ TechnicalList.defaultProps = {
 }
 
 TechnicalList.propTypes = {
-  technicians: PropTypes.arrayOf({}).isRequired,
+  technicians: PropTypes.arrayOf(
+    PropTypes.shape({
+      technician: PropTypes.object,
+    })
+  ).isRequired,
   onClick: PropTypes.func,
 }
 

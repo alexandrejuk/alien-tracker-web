@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Avatar } from 'antd'
+import { pick, propOr } from 'ramda'
+
 import styles from './index.css'
 
 const cardBodyStyle = {
@@ -10,68 +12,92 @@ const cardBodyStyle = {
   padding: '15px',
 }
 
-const TechnicalCard = ({
-  technician,
-  order,
-  status,
-  onClick,
-}) => {
-  const { foto_url, nome } = technician // eslint-disable-line
-  const { id, companyName, counter } = order
-  const { type, start } = status
-  const handleClick = () => onClick({ technician, order, status })
-
-  return (
-    <Card
-      style={{ width: 300 }}
-      bodyStyle={cardBodyStyle}
-      hoverable
-      onClick={handleClick} // eslint-disable-line
-    >
-      <Avatar
-        size={64}
-        icon="user"
-        src={foto_url} // eslint-disable-line
-      />
-      <div className={styles.content}>
-        <p>
-          <span className={styles.name}>{nome}</span>
-          <span className={styles.counter}>{counter}</span>
-        </p>
-        <p>{`${companyName} - ${id}`}</p>
-        <p>{`${type} - ${start}`}</p>
-      </div>
-    </Card>
+class TechnicalCard extends React.PureComponent {
+  handleClick = () => this.props.onClick(
+    pick(['technician'], this.props)
   )
+
+  renderClient = cliente =>
+    (<p>{`${cliente.name} - ${cliente.documentId}`}</p>)
+
+  render () {
+    const {
+      technician,
+    } = this.props
+
+    const {
+      currentActivity,
+      name,
+      avatarUrl,
+    } = technician
+
+    const {
+      externalService = {},
+      status,
+    } = currentActivity
+
+    const distance = propOr(
+      null,
+      'distance',
+      externalService,
+    )
+
+    const textDitance = distance ? ` - ${distance}` : ''
+
+    return (
+      <Card
+        bodyStyle={cardBodyStyle}
+        hoverable
+        className={styles.card}
+        onClick={this.handleClick}
+      >
+        <Avatar
+          size={64}
+          icon="user"
+          src={avatarUrl}
+        />
+        <div className={styles.content}>
+          <p>
+            <span className={styles.name}>{name}</span>
+          </p>
+          {
+            externalService.client
+            && this.renderClient(externalService.client)
+          }
+          <p>{`${status} ${textDitance}`}</p>
+        </div>
+      </Card>
+    )
+  }
 }
 
 TechnicalCard.defaultProps = {
-  technician: {},
-  order: {
-    id: 0,
-    companyName: '',
-    counter: '',
-  },
-  status: {
-    type: '',
-    start: '',
-  },
   onClick: () => null,
 }
 
 TechnicalCard.propTypes = {
   technician: PropTypes.shape({
-    nome: PropTypes.string,
-  }),
-  order: PropTypes.shape({
-    id: PropTypes.number,
-    companyName: PropTypes.string,
-    counter: PropTypes.string,
-  }),
-  status: PropTypes.shape({
-    type: PropTypes.string,
-    start: PropTypes.string,
-  }),
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    currentActivity: PropTypes.shape({
+      status: PropTypes.oneOf([
+        'PENDENTE',
+        'PAUSE_ATIVIDADE',
+        'INICIO_ATIVIDADE',
+        'FIM_ATIVIDADE',
+        'INICIO_DESLOCAMENTO',
+        'FIM_DESLOCAMENTO',
+        'CANCELA_ATIVIDADE',
+      ]).isRequired,
+      externalService: PropTypes.shape({
+        client: PropTypes.shape({
+          documentId: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+        distance: PropTypes.string.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
   onClick: PropTypes.func,
 }
 

@@ -6,26 +6,33 @@ import { action } from '@storybook/addon-actions'
 import TechnicalCard from '.'
 
 const technician = {
-  nome: 'Jailson Mendes',
-  foto_url: 'https://pbs.twimg.com/profile_images/378800000767341390/5ead95c84f7f90f7f9162e995b06308d_400x400.jpeg', // eslint-disable-line
+  name: 'Jailson Mendes',
+  avatarUrl: 'https://pbs.twimg.com/profile_images/378800000767341390/5ead95c84f7f90f7f9162e995b06308d_400x400.jpeg', // eslint-disable-line
+  currentActivity: {
+    status: 'PENDENTE',
+    externalService: {
+      client: {
+        name: 'EMPRESA TOPPER',
+        documentId: '51426149000178',
+      },
+      distance: '32 km',
+    },
+  },
 }
 
-const order = {
-  id: 123123,
-  companyName: 'Empresa Topper',
-  counter: '3/7',
-}
-
-const status = {
-  type: 'Em Deslocamento',
-  start: '10:30',
+const technicianWithoutExternalService = {
+  name: 'Jailson Mendes',
+  avatarUrl: 'https://pbs.twimg.com/profile_images/378800000767341390/5ead95c84f7f90f7f9162e995b06308d_400x400.jpeg', // eslint-disable-line
+  currentActivity: {
+    status: 'PENDENTE',
+  },
 }
 
 const centralize = {
   height: '100vh',
   display: 'flex',
   justifyContent: 'center',
-  'align-items': 'center',
+  alignItems: 'center',
 }
 
 storiesOf('TechnicalCard', module)
@@ -33,8 +40,12 @@ storiesOf('TechnicalCard', module)
   .add('Default', () => (
     <TechnicalCard
       technician={technician}
-      order={order}
-      status={status}
+      onClick={action('clicked')}
+    />
+  ))
+  .add('Without External Service', () => (
+    <TechnicalCard
+      technician={technicianWithoutExternalService}
       onClick={action('clicked')}
     />
   ))
