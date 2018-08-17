@@ -1,1 +1,2 @@
-export { default as Login } from './Login' // eslint-disable-line
+export { default as Login } from './Login'
+export { default as Monitoring } from './Monitoring'

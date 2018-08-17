@@ -1,9 +1,13 @@
-import { LOGIN_SUCCESSFULL } from './actions'
+import { LOGIN_SUCCESSFULL, LOGOUT } from './actions'
 
-const login = (state = {}, { type, payload }) => {
+const logoutState = {}
+
+const login = (state = logoutState, { type, payload }) => {
   switch (type) {
     case LOGIN_SUCCESSFULL:
       return payload
+    case LOGOUT:
+      return logoutState
     default:
       return state
   }

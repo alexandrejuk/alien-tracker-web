@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  react-production:
+    build:
+      context: .
+    ports:
+      - 80:80

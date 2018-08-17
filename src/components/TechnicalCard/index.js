@@ -64,7 +64,10 @@ class TechnicalCard extends React.PureComponent {
             externalService.client
             && this.renderClient(externalService.client)
           }
-          <p>{`${status} ${textDitance}`}</p>
+          {
+            (status || textDitance)
+            && <p>{`${status} ${textDitance}`}</p>
+          }
         </div>
       </Card>
     )
@@ -88,7 +91,7 @@ TechnicalCard.propTypes = {
         'INICIO_DESLOCAMENTO',
         'FIM_DESLOCAMENTO',
         'CANCELA_ATIVIDADE',
-      ]).isRequired,
+      ]),
       externalService: PropTypes.shape({
         client: PropTypes.shape({
           documentId: PropTypes.string.isRequired,

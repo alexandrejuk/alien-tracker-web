@@ -32,7 +32,7 @@ class PrivateRoute extends PureComponent {
     return (
       <Route
         {...rest}
-        render={RenderComponent}
+        component={RenderComponent}
       />
     )
   }

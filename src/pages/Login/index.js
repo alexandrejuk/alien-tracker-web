@@ -19,7 +19,7 @@ class Login extends Component {
         this.props.login(response.data)
         this.props.history.push("/monitoring");
       })
-      .finally(() => this.setState({ loading: false }))
+      .catch(() => this.setState({ loading: false }))
   }
 
   handleOnClick = (data) => {

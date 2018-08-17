@@ -10,8 +10,7 @@ import PropTypes from 'prop-types'
 
 import Login from './Login'
 import ProtectedRoute from './routing/ProtectedRoute'
-
-const PrivateComponent = () => <div>PrivateComponent</div>
+import Monitoring from './Monitoring'
 
 const Root = ({ funcionario }) => (
   <Router forceRefresh={false}>
@@ -20,7 +19,7 @@ const Root = ({ funcionario }) => (
 
       <ProtectedRoute
         path="/monitoring"
-        component={PrivateComponent}
+        component={Monitoring}
         permissions={['*']}
         user={funcionario}
       />
