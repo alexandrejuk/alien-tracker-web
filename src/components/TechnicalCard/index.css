@@ -1,0 +1,35 @@
+.content {
+  padding-left: 20px;
+  width: 75%;
+}
+
+.counter {
+  font-weight: bold;
+}
+
+.counter:first-letter {
+  font-weight: normal;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.content p {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.content p:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  text-transform: initial;
+}
+
+.card {
+  min-width: 380px;
+}
